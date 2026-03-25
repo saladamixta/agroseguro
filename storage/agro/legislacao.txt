@@ -1,0 +1,186 @@
+# BASE LEGAL E REGULAMENTAR – TRANSPORTE, COMERCIALIZAÇÃO E USO DE AGROTÓXICOS (ATUALIZADO 2025)
+
+## 🏛️ FEDERAL
+- Lei nº 14.785/2023 – Novo Marco Legal dos Agrotóxicos (Revoga a Lei nº 7.802/1989)
+  → Dispõe sobre o registro, fiscalização, controle, produção, comercialização, transporte e uso de agrotóxicos, seus componentes e afins.
+  → Artigos principais: 2º (Definições), 3º (Obrigatoriedades), 6º (Registro), 11 (Fiscalização), 17 (Sanções), 20 (Infrações e sanções).
+
+- Decreto nº 11.541/2023 – Regulamenta a Lei nº 14.785/2023
+  → Detalha procedimentos sobre registro, produção, comercialização, transporte, armazenagem e fiscalização de agrotóxicos.
+
+- Resolução ANTT nº 5.998/2022
+  → Normas para transporte terrestre de produtos perigosos, incluindo agrotóxicos.
+  → Itens: 3.3.3.1.1 (Documentação obrigatória), 5.4.1.1.1 (Sinalização dos veículos), 5.4.3.2 (Ficha de emergência), 8.1.2.1(a) (Treinamento e EPIs).
+
+- Lei nº 9.605/1998 – Lei de Crimes Ambientais
+  → Art. 56 – Crimes relacionados à fabricação, venda, transporte ou uso de substâncias tóxicas sem autorização.
+
+- Decreto nº 6.514/2008
+  → Arts. 60 a 80 – Define sanções administrativas por infrações ambientais, incluindo transporte e uso de agrotóxicos.
+
+-------------------------------------------------------------------------------
+
+## 🏛️ LEGISLAÇÃO ESTADUAL
+
+### ACRE
+- Lei nº 1.413/2001
+- Decreto nº 6.563/2002
+
+### ALAGOAS
+- Lei nº 6.875/2008
+- Decreto nº 5.098/2008
+
+### AMAPÁ
+- Lei nº 1.371/2009
+- Decreto nº 2.459/2009
+
+### AMAZONAS
+- Lei nº 2.857/2003
+- Decreto nº 23.994/2003
+
+### BAHIA
+- Lei nº 7.799/2001
+- Decreto nº 8.973/2003
+
+### CEARÁ
+- Lei nº 12.228/1993
+- Decreto nº 25.965/2000
+
+### DISTRITO FEDERAL
+- Lei nº 2.112/1998
+- Decreto nº 19.915/1998
+
+### ESPÍRITO SANTO
+- Lei nº 5.887/1999
+- Decreto nº 1.357/2004
+
+### GOIÁS
+- Lei nº 14.038/2001
+- Decreto nº 5.351/2000
+
+### MARANHÃO
+- Lei nº 7.799/2002
+- Decreto nº 18.879/2003
+
+### MATO GROSSO
+- Lei nº 9.096/2009
+- Decreto nº 2.735/2010
+
+### MATO GROSSO DO SUL
+- Lei nº 2.922/2005
+- Decreto nº 13.626/2013
+
+### MINAS GERAIS
+- Lei nº 10.545/1991
+- Decreto nº 41.203/2000
+- Lei nº 22.805/2017 (PAE)
+- Decreto nº 47.629/2019 (PAE)
+
+### PARÁ
+- Lei nº 5.887/1995
+- Decreto nº 1.144/1996
+
+### PARAÍBA
+- Lei nº 8.143/2006
+- Decreto nº 29.368/2008
+
+### PARANÁ
+- Lei nº 7.827/1984
+- Decreto nº 5.711/2002
+- Resolução SEMA nº 089/2013
+
+### PERNAMBUCO
+- Lei nº 12.484/2004
+- Decreto nº 30.282/2007
+
+### PIAUÍ
+- Lei nº 5.086/2000
+- Decreto nº 11.035/2003
+
+### RIO DE JANEIRO
+- Lei nº 3.916/2002
+- Decreto nº 32.065/2002
+
+### RIO GRANDE DO NORTE
+- Lei nº 6.938/1996
+- Decreto nº 13.730/1997
+
+### RIO GRANDE DO SUL
+- Lei nº 7.747/1982
+- Decreto nº 23.430/1974
+- Decreto nº 32.854/1988
+
+### RONDÔNIA
+- Lei nº 1.330/2004
+- Decreto nº 9.625/2005
+
+### RORAIMA
+- Lei nº 414/2003
+- Decreto nº 6.234/2006
+
+### SANTA CATARINA
+- Lei nº 10.762/1998
+- Decreto nº 3.940/1999
+
+### SÃO PAULO
+- Lei nº 9.034/1994
+- Decreto nº 45.211/2000
+- Resolução SMA nº 13/2006
+- Portaria CDA nº 39/2008
+
+### SERGIPE
+- Lei nº 5.858/2006
+- Decreto nº 24.702/2007
+
+### TOCANTINS
+- Lei nº 1.477/2004
+- Decreto nº 1.926/2006
+
+-------------------------------------------------------------------------------
+
+## ⚠️ DISTINÇÕES E EXIGÊNCIAS (APLICÁVEIS EM ÂMBITO NACIONAL E ESTADUAL)
+
+- ✅ **Cadastro e registro obrigatório** da empresa e dos produtos junto aos órgãos estaduais de agricultura e meio ambiente.
+- ✅ **Licença ambiental válida** emitida pelo estado.
+- ✅ **Nota fiscal eletrônica (NF-e)** com dados corretos e completos.
+- ✅ **Documentação obrigatória para transporte**:
+  → Ficha de Emergência
+  → Envelope para Transporte
+  → Manifesto de Carga
+- ✅ **Sinalização obrigatória nos veículos**, incluindo:
+  → Painel de segurança
+  → Rótulo de risco (Classe 6.1 ou 9, conforme produto)
+- ✅ **Plano de Ação de Emergência (PAE)** obrigatório em estados como MG, GO e outros, conforme legislação.
+- ✅ **EPIs obrigatórios** para condutores e operadores no transporte e manuseio.
+- ✅ **Controle de armazenamento e estocagem**, com locais específicos, ventilados e sinalizados.
+- ✅ Proibição de transporte conjunto com cargas incompatíveis (alimentos, medicamentos, etc.).
+- ✅ Atendimento às exigências da ANTT para transporte de produtos perigosos.
+
+-------------------------------------------------------------------------------
+
+## 🚫 EXEMPLOS DE INFRAÇÕES COMUNS
+
+- 🚛 **Transporte interestadual sem nota fiscal válida, sem placas de risco e sem PAE**  
+→ Infração: Decreto MG nº 41.203/2000 Art. 16 + Resolução ANTT nº 5.998/2022 Itens 5.4.1.1.1 e 8.1.2.1(a).
+
+- 🏪 **Venda de agrotóxicos sem registro estadual e sem licença ambiental válida**  
+→ Infração: Lei Federal nº 14.785/2023 Art. 6º + Decreto nº 11.541/2023 Art. 42 + Leis Estaduais respectivas.
+
+- 🚫 **Empresa operando sem cadastro junto ao órgão estadual**  
+→ Infração: Lei Estadual correspondente + Lei Federal nº 14.785/2023 Art. 3º.
+
+- 🔥 **Ausência de EPIs durante o transporte ou manipulação**  
+→ Infração: Decreto MG nº 41.203/2000 Art. 25, item VII + Resolução ANTT nº 5.998/2022.
+
+- 🛑 **Transporte com veículo sem sinalização adequada (painel de segurança e rótulo de risco)**  
+→ Infração: Resolução ANTT nº 5.998/2022 Itens 5.4.1.1.1 e 5.4.3.2.
+
+- ⚠️ **Falta de documentação obrigatória no transporte (Ficha de Emergência e Envelope)**  
+→ Infração: Resolução ANTT nº 5.998/2022 Item 3.3.3.1.1.
+
+-------------------------------------------------------------------------------
+
+## ✅ OBSERVAÇÃO FINAL
+A legislação federal é aplicada em todo o território nacional e prevalece na ausência de normas estaduais específicas. Entretanto, cada estado possui sua própria regulamentação complementar, sendo obrigatório o atendimento às duas esferas.
+
+-------------------------------------------------------------------------------
