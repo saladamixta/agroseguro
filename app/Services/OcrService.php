@@ -9,26 +9,32 @@ use Illuminate\Support\Facades\Log;
 class OcrService
 {
     /**
-     * Lê o arquivo do disco "public", manda pro Azure Document Intelligence
+     * Lê o arquivo do disco "public", manda para o Azure Document Intelligence
      * e devolve o texto bruto extraído.
      */
     public function extractTextFromStorage(string $storagePath): string
     {
-        // Config do Azure OCR (config/services.php + .env)
-        $azureKey = config('services.azure_ocr.key') ?? env('AZURE_OCR_KEY');
-        $azureEndpoint = config('services.azure_ocr.endpoint') ?? env('AZURE_OCR_ENDPOINT');
+        // Sempre usar config() em produção
+        $azureKey = config('services.azure_ocr.key');
+        $azureEndpoint = config('services.azure_ocr.endpoint');
 
         if ($azureEndpoint) {
             $azureEndpoint = rtrim($azureEndpoint, '/');
         }
 
-        if (!$azureKey || !$azureEndpoint) {
+        if (empty($azureKey) || empty($azureEndpoint)) {
             throw new \RuntimeException(
-                'Azure OCR não configurado (services.azure_ocr.endpoint / key).'
+                'Azure OCR não configurado. Verifique services.azure_ocr.endpoint e services.azure_ocr.key.'
             );
         }
 
-        // 1) Lê o arquivo salvo pelo AgroScan (disco "public")
+        if (!Storage::disk('public')->exists($storagePath)) {
+            throw new \RuntimeException(
+                'Arquivo não encontrado no disco public: ' . $storagePath
+            );
+        }
+
+        // 1) Lê o arquivo salvo no disco "public"
         $fileContent = Storage::disk('public')->get($storagePath);
 
         // Descobre o mime; se não souber, usa binário genérico
@@ -39,17 +45,19 @@ class OcrService
             . '/documentintelligence/documentModels/prebuilt-receipt:analyze'
             . '?api-version=2024-11-30';
 
-        Log::info('Azure OCR - Enviando para analyze', [
+        Log::info('Azure OCR - enviando arquivo para analyze', [
             'path' => $storagePath,
             'mime' => $mime,
             'endpoint' => $urlAnalyze,
         ]);
 
-        // 3) POST assíncrono mandando o BINÁRIO do arquivo (NÃO em JSON!)
-        $postResponse = Http::withOptions(['verify' => false])
+        // 3) POST assíncrono mandando o binário do arquivo
+        $postResponse = Http::timeout(120)
+            ->connectTimeout(30)
+            ->withOptions(['verify' => false])
             ->withHeaders([
                 'Ocp-Apim-Subscription-Key' => $azureKey,
-                'Content-Type'              => $mime,
+                'Content-Type' => $mime,
             ])
             ->withBody($fileContent, $mime)
             ->post($urlAnalyze);
@@ -57,16 +65,15 @@ class OcrService
         if ($postResponse->failed()) {
             Log::error('Azure OCR analyze falhou', [
                 'status' => $postResponse->status(),
-                'body'   => $postResponse->body(),
+                'body' => $postResponse->body(),
             ]);
 
             throw new \RuntimeException(
-                'Falha ao enviar o documento para o Azure OCR (HTTP '
-                . $postResponse->status() . ').'
+                'Falha ao enviar o documento para o Azure OCR (HTTP ' . $postResponse->status() . ').'
             );
         }
 
-        // 4) Recupera o Operation-Location para fazer polling
+        // 4) Recupera o Operation-Location para polling
         $operationLocation = $postResponse->header('Operation-Location');
 
         if (!$operationLocation) {
@@ -75,49 +82,49 @@ class OcrService
             ]);
 
             throw new \RuntimeException(
-                'Resposta inesperada do Azure OCR (sem Operation-Location).'
+                'Resposta inesperada do Azure OCR: Operation-Location não foi retornado.'
             );
         }
 
-        Log::info('Azure OCR - OperationLocation recebido', [
+        Log::info('Azure OCR - operation location recebido', [
             'operation_location' => $operationLocation,
         ]);
 
-        // 5) Polling até o status ficar "succeeded"
-        //    (aqui aumentei o tempo total de espera!)
-        $maxTentativas = 25;   // até ~ 30 segundos de espera
-        $esperaMs      = 1200; // 1,2s entre tentativas
+        // 5) Polling até concluir
+        $maxTentativas = 25;
+        $esperaMs = 1200;
 
         $analyzeResult = null;
 
         for ($i = 0; $i < $maxTentativas; $i++) {
             usleep($esperaMs * 1000);
 
-            $getResponse = Http::withOptions(['verify' => false])
+            $getResponse = Http::timeout(120)
+                ->connectTimeout(30)
+                ->withOptions(['verify' => false])
                 ->withHeaders([
                     'Ocp-Apim-Subscription-Key' => $azureKey,
                 ])
                 ->get($operationLocation);
 
             if ($getResponse->failed()) {
-                Log::warning('Azure OCR get-analyze falhou', [
+                Log::warning('Azure OCR polling falhou', [
                     'tentativa' => $i + 1,
-                    'status'    => $getResponse->status(),
-                    'body'      => $getResponse->body(),
+                    'status' => $getResponse->status(),
+                    'body' => $getResponse->body(),
                 ]);
                 continue;
             }
 
             $resultJson = $getResponse->json();
-            $status     = $resultJson['status'] ?? null;
+            $status = $resultJson['status'] ?? null;
 
             Log::info('Azure OCR polling', [
                 'tentativa' => $i + 1,
-                'status'    => $status,
+                'status' => $status,
             ]);
 
             if ($status === 'running' || $status === 'notStarted') {
-                // ainda processando, segue o loop
                 continue;
             }
 
@@ -126,15 +133,13 @@ class OcrService
                 break;
             }
 
-            // status "failed" ou qualquer outro
             Log::error('Azure OCR retornou status inesperado', [
                 'status' => $status,
-                'body'   => $getResponse->body(),
+                'body' => $getResponse->body(),
             ]);
 
             throw new \RuntimeException(
-                'Azure OCR não conseguiu processar o documento (status '
-                . ($status ?? 'desconhecido') . ').'
+                'Azure OCR não conseguiu processar o documento (status ' . ($status ?? 'desconhecido') . ').'
             );
         }
 
@@ -163,11 +168,11 @@ class OcrService
         }
 
         if (!$textoBruto) {
-            Log::error('Azure OCR não retornou texto', [
-                'analyzeResult_snippet' => substr(
+            Log::error('Azure OCR não retornou texto legível', [
+                'analyze_result_snippet' => substr(
                     json_encode($analyzeResult, JSON_UNESCAPED_UNICODE),
                     0,
-                    500
+                    1000
                 ),
             ]);
 
@@ -176,9 +181,9 @@ class OcrService
             );
         }
 
-        Log::info('Azure OCR - texto extraído', [
-            'len'  => strlen($textoBruto),
+        Log::info('Azure OCR - texto extraído com sucesso', [
             'path' => $storagePath,
+            'len' => strlen($textoBruto),
         ]);
 
         return $textoBruto;
